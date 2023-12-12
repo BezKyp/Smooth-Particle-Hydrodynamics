@@ -100,6 +100,7 @@ function handleMouseOut(e) {
 }
 
 function computeWindowArea() {
+  // console.log(renderer.domElement);
   // the width and height pad/bars estimate can be calculated less than zero on mobile due to zooming
   let widthPadEstimate = Math.max(window.outerWidth - window.innerWidth, 0);
   left = window.screenX + widthPadEstimate / 2;
@@ -108,7 +109,7 @@ function computeWindowArea() {
   // assume address bar, toolbars, favs, menus, are all at the top
   let topBarsHeightEstimate = Math.max(window.outerHeight - window.innerHeight, 0);
   bottom = screen.height - window.screenY - window.outerHeight;
-  top = screen.height - window.screenY - topBarsHeightEstimate;
+  top = screen.height - window.screenY - topBarsHeightEstimate - 70;
 
   // on mobile, innerWidth/Height can be larger than outerWidth/Height, requiring some renderer zooming
   zoomX = window.innerWidth > window.outerWidth ? window.innerWidth / window.outerWidth : 1;
@@ -129,7 +130,7 @@ function handleMouseMove(e) {
     windowMovementInterval = -1;
   }
 
-  engine.forceVelocity(e.clientX + left, e.clientY/*+bottom*/, e.movementX, e.movementY);
+  engine.forceVelocity(e.clientX + left, e.clientY, e.movementX, e.movementY);
 
   bigCircle.position.set(e.clientX + left, top - e.clientY, 0);
 
@@ -150,7 +151,7 @@ function handleTouchMove(e) {
     if (lastX != undefined && lastY != undefined) {
       let dx = tx - lastX;
       let dy = ty - lastY;
-      engine.forceVelocity(tx + left, ty/*+bottom*/, dx, dy);
+      engine.forceVelocity(tx + left, ty, dx, dy);
     }
     lastX = tx;
     lastY = ty;
