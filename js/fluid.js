@@ -130,7 +130,7 @@ function handleMouseMove(e) {
     windowMovementInterval = -1;
   }
 
-  engine.forceVelocity(e.clientX + left, e.clientY, e.movementX, e.movementY);
+  engine.forceVelocity(e.clientX + left, e.clientY - 60, e.movementX, e.movementY);
 
   bigCircle.position.set(e.clientX + left, top - e.clientY, 0);
 
