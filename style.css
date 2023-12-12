@@ -19,5 +19,9 @@
 
 .button {
     background-color:mistyrose
+}
 
+.demobutton {
+    background-color: mistyrose;
+    margin-left: 50px;
 }
